@@ -1,0 +1,50 @@
+---
+interface Props {
+  titulo: string;
+  texto: string;
+  etiquetas: string[];
+  botones: { [key: string]: string };
+}
+
+const { titulo, texto, etiquetas, botones } = Astro.props;
+---
+
+<li
+  class="flex items-center flex-col bg-bgBlanco rounded-lg w-[450px] h-[350px] p-1 gap-1 overflow-auto hover:scale-105 transform transition duration-300"
+>
+  <h3
+    class="bg-bgPrincipal w-full rounded-2xl p-5 text-textoClaro text-center justify-center"
+  >
+    {titulo}
+  </h3>
+  <p class="px-3 font-thin h-[150px] overflow-auto">{texto}</p>
+
+  <!-- Sección para imprimir las etiquetas -->
+  <div
+    class="border-t-2 border-gray-300 w-full text-center flex justify-around py-2"
+  >
+    {
+      etiquetas.map((etiqueta) => (
+        <span class="border border-borderAcento rounded-2xl px-2 my-1 mx-1">
+          {etiqueta}
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- Sección para imprimir los botones -->
+  <div
+    class="border-t-2 border-gray-300 w-full text-center flex justify-around py-2"
+  >
+    {
+      Object.keys(botones).map((key) => (
+        <a
+          href={botones[key]}
+          class="border-2 border-bgPrincipal rounded-2xl text-textoAcento shadow-sm p-1 px-2 py-1 m-2 hover:bg-hoverBoton hover:text-bgBlanco hover:border-red-50"
+        >
+          {key}
+        </a>
+      ))
+    }
+  </div>
+</li>
